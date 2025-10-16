@@ -63,11 +63,6 @@ public class Teacher {
      */
     @Column(name = "birth_date")
     private LocalDate birthDate;
-    // TODO 需要确认，是否包含，“主讲”字段
-    /**
-     * 是否主讲
-     */
-    @Column(name = "is_main_lecturer")
-    private String isMainLecturer;
+
 }
     
