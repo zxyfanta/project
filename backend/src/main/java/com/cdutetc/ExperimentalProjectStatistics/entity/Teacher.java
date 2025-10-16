@@ -41,7 +41,7 @@ public class Teacher {
     private String department;
 
     /**
-     * 教工号
+     * 教工号/登录username
      */
     @Column(name = "employee_id", unique = true, nullable = false)
     private String employeeId;
@@ -64,5 +64,15 @@ public class Teacher {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    /**
+     * 密码 
+     */
+    @Column(name = "password")
+    private String password;
+    /**
+     * role角色 
+     */
+    @Column(name = "role")
+    private String role;
 }
     
