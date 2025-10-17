@@ -3,6 +3,7 @@ package com.cdutetc.eps.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdutetc.eps.common.ApiResponse;
+import com.cdutetc.eps.common.BusinessException;
 import com.cdutetc.eps.entity.MajorCodeTable;
 import com.cdutetc.eps.service.impl.MajorCodeTableServiceImpl;
 
@@ -57,7 +58,7 @@ public class MajorCodeTableController {
     public ApiResponse<Void> deleteMajorCode(@PathVariable Long id){
         if(!majorCodeTableServiceImpl.getMajorCodeById(id).isPresent()){
             // TODO 添加全局异常处理
-            throw Exception;
+            throw BusinessException.notFound("专业编码");
         }
         majorCodeTableServiceImpl.deleteMajorCode(id);
         return ApiResponse.success();
