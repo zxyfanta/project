@@ -1,13 +1,13 @@
-package com.cdutetc.ExperimentalProjectStatistics;
+package com.cdutetc.eps;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExperimentalProjectStatisticsApplication {
+public class EPSApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExperimentalProjectStatisticsApplication.class, args);
+		SpringApplication.run(EPSApplication.class, args);
 	}
 
 }

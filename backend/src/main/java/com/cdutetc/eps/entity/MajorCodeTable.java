@@ -1,4 +1,4 @@
-package com.cdutetc.ExperimentalProjectStatistics.entity;
+package com.cdutetc.eps.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

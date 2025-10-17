@@ -1,4 +1,4 @@
-package com.cdutetc.ExperimentalProjectStatistics.entity;
+package com.cdutetc.eps.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class ExperimentalProjectDataStatisticsTable {
+public class EPSTable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

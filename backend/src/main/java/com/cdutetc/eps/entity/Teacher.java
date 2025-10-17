@@ -1,4 +1,4 @@
-package com.cdutetc.ExperimentalProjectStatistics.entity;
+package com.cdutetc.eps.entity;
 
 
 import lombok.Data;
