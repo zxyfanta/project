@@ -2,10 +2,17 @@ package com.cdutetc.eps.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdutetc.eps.common.ApiResponse;
+import com.cdutetc.eps.entity.MajorCodeTable;
 import com.cdutetc.eps.repository.MajorCodeTableRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -25,7 +32,17 @@ public class MajorCodeTableController {
     //curd 
     // 查询
     // 获取全部专业代码
-    
+    //1 确定访问形式，：在restful风格中 ，无任何参数的get请求，表示获取全部信息
+    @GetMapping
+    public ApiResponse<List<MajorCodeTable>> getAllMajorCodes(){
+        return ApiResponse.success(majorCodeTableRepository.findAll());
+    }
+
+    //create 添加 在接收json数据时，应当使用 @RequestBody来标记
+    @PostMapping
+    public ApiResponse<MajorCodeTable> createMajorCode(@RequestBody MajorCodeTable majorCodeTable){
+        return ApiResponse.success(majorCodeTableRepository.save(majorCodeTable));
+    }
 
 
 

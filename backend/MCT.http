@@ -1,0 +1,16 @@
+GET http://localhost:8080/api/major-codes
+
+
+
+
+###
+POST http://localhost:8080/api/major-codes
+Content-Type: application/json
+
+{
+    "affiliatedCollege": "李四学院",
+    "majorCode": 999, 
+    "majorName": "刑法",
+    "educationalSystem": 8,
+    "educationalLevel": "本硕连读"
+}
