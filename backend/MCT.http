@@ -14,3 +14,10 @@ Content-Type: application/json
     "educationalSystem": 8,
     "educationalLevel": "本硕连读"
 }
+
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/major-codes/1
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/major-codes/2
