@@ -12,8 +12,10 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * 教师表实体类
@@ -22,7 +24,37 @@ import org.springframework.security.core.GrantedAuthority;
 @Data
 @Entity
 @Table(name = "teacher")
-public class Teacher {
+public class Teacher implements UserDetails{
+    // Override部分
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getPassword(){
+        return password;
+    } 
+    @Override 
+    public String getUsername(){
+        return employeeId;
+    }
+    @Override
+    public boolean isAccountNonExpired(){
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked(){
+        return true;
+    }
+    @Override
+    public boolean isEnabled(){
+        return true;
+    }
+
+
+
+
 
     /**
      * 主键ID
@@ -49,10 +81,6 @@ public class Teacher {
     @Column(name = "employee_id", unique = true, nullable = false)
     private String employeeId;
 
-    // @Override
-    // public Collection<? extends GrantedAuthority> getAuthorities(){
-    //     return roles.
-    // }
 
     /**
      * 教师名称

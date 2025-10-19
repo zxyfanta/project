@@ -1,0 +1,10 @@
+### 发送登录请求
+POST http://localhost:8080/api/public/login
+Content-Type: "application/json"
+
+{
+    "username": "abc",
+    "password": "123123"
+}
+
+### 
