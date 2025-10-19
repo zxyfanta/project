@@ -7,12 +7,15 @@ import java.util.Map;
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.cdutetc.eps.entity.Teacher;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import cn.hutool.jwt.JWTUtil;
+import cn.hutool.jwt.JWTValidator;
+import cn.hutool.jwt.signers.JWTSigner;
+import cn.hutool.jwt.signers.JWTSignerUtil;
 
 // 打不打注解？
 // @Service @Controller @Repository @Entity 表示实体，java bean，用来标识，需要得到spring的管理。
@@ -33,33 +36,32 @@ public class JwtTokenUtil {
     private Long expiration;
 
     // 对外公开一个方法，用于产生用户所需要的token
-    public String generateToken(Teacher teacher){
-        Map<String,Object> claims=new HashMap<>();
-        return Jwts.builder().setClaims(claims)
-        .setSubject(teacher.getEmployeeId())
-        .setExpiration(new Date(System.currentTimeMillis()+expiration*1000))
-        .signWith(SignatureAlgorithm.HS512,secret)
-        .compact();
+    public String generateToken(UserDetails userDetails){
+        Map<String,Object> preload=new HashMap<>();
+        preload.put("sub",userDetails.getUsername());
+        preload.put("iat",new Date());
+        preload.put("exp",new Date(System.currentTimeMillis()+expiration*1000));
+        JWTSigner signer=JWTSignerUtil.hs256(secret.getBytes());
+        return JWTUtil.createToken(preload, signer);
     }
 
     // 从token中获取EmploeyId
-    public String getEmploeyIdFromToken(String token){
-        return Jwts.parser()
-        .setSigningKey(secret)
-        .parseClaimsJws(token)
-        .getBody()
-        .getSubject();
+    public String extractUsername(String token){
+        return JWTUtil.parseToken(token).getPayload("sub").toString();
     }
 
     //token 是否失效
-    public boolean validateToken(String token,Teacher teacher){
-        String eId=getEmploeyIdFromToken(token);
-        return eId.equals(teacher.getEmployeeId()) && ! isTokenExpired(token);
-    }
-
-    // token 是否过期
-    public boolean isTokenExpired(String token){
-        Date expirationDate= Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getExpiration();
-        return expirationDate.before(new Date());
+    public boolean validateToken(String token,UserDetails userDetails){
+        try{
+            JWTSigner signer=JWTSignerUtil.hs256(secret.getBytes());
+            if(!JWTUtil.verify(token, signer)){
+                return false;
+            }
+            JWTValidator.of(token).validateDate();
+            String username=extractUsername(token);
+            return username.equals(userDetails.getUsername());
+        }catch(Exception e){
+            return false;
+        }
     }
 }

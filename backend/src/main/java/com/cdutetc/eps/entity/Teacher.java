@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  * 教师表实体类
@@ -45,6 +48,11 @@ public class Teacher {
      */
     @Column(name = "employee_id", unique = true, nullable = false)
     private String employeeId;
+
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities(){
+    //     return roles.
+    // }
 
     /**
      * 教师名称
