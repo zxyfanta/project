@@ -22,3 +22,6 @@ excel:
     - classpath:excel/file2.xlsx
     - classpath:excel/file3.xlsx
 
+jwt:
+  secret: 123123123
+  expiration: 86400
