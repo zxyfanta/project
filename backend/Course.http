@@ -1,0 +1,22 @@
+GET http://localhost:8080/api/courses
+
+
+
+
+###
+POST http://localhost:8080/api/courses
+Content-Type: application/json
+
+{
+    "course_code": 9
+}
+
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/courses/1
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/courses/2
+
+### 通过id 对MajorCodeTabke进行删除
+DELETE http://localhost:8080/api/courses/1
