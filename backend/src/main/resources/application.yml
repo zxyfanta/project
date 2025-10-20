@@ -16,9 +16,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-excel:
-  file-paths:
-    - classpath:excel/file1.xlsx
-    - classpath:excel/file2.xlsx
-    - classpath:excel/file3.xlsx
-
+  mvc:
+    pathmatch:
+      use-suffix-pattern: false
+      use-registered-suffix-pattern: false
+  resources:
+    cache:
+      period: 0
+      cachecontrol:
+        max-age: 0

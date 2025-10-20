@@ -1,0 +1,25 @@
+
+GET http://localhost:8080/api/teachers
+
+
+
+
+###
+POST http://localhost:8080/api/teachers
+Content-Type: application/json
+
+
+{
+    "name": "法外狂徒",
+    "employeeId": "999"
+}
+
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/teachers/1
+
+### 通过id 对MajorCodeTable 进行查询
+GET http://localhost:8080/api/teachers/2
+
+### 通过id 对MajorCodeTabke进行删除
+DELETE http://localhost:8080/api/teachers/1

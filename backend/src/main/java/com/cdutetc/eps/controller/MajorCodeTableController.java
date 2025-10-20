@@ -41,14 +41,14 @@ public class MajorCodeTableController {
 
     // 获取全部专业代码
     //1 确定访问形式，：在restful风格中 ，无任何参数的get请求，表示获取全部信息
-    @GetMapping
+    @GetMapping("")
     public ApiResponse<List<MajorCodeTable>> getAllMajorCodes(){
         return ApiResponse.success(majorCodeTableServiceImpl.getAllMajorCodes());
     }
 
 
     //create 添加 在接收json数据时，应当使用 @RequestBody来标记
-    @PostMapping
+    @PostMapping("")
     public ApiResponse<MajorCodeTable> createMajorCode(@RequestBody MajorCodeTable majorCodeTable){
         return ApiResponse.success(majorCodeTableServiceImpl.saveMajorCode(majorCodeTable));
     }
