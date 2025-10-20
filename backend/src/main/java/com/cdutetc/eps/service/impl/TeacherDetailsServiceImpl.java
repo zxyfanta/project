@@ -16,8 +16,7 @@ public class TeacherDetailsServiceImpl implements TeacherDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String employeeId) throws UsernameNotFoundException{
-        // return teacherRepository.findByEmployeeId(employeeId).orElseThrow(new BusinessException().notFound(employeeId));
-        return teacherRepository.findByEmployeeId(employeeId).orElseThrow(()->new UsernameNotFoundException(employeeId));
+        return teacherRepository.findByEmployeeId(employeeId).orElseThrow(() -> new UsernameNotFoundException(employeeId));
     }
     
 }

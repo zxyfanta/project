@@ -1,8 +1,7 @@
 package com.cdutetc.eps.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface TeacherDetailsService {
-    public UserDetails loadUserByUsername(String employeeId)throws UsernameNotFoundException;
+public interface TeacherDetailsService extends UserDetailsService {
+
 }

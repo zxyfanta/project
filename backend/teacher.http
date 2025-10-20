@@ -1,10 +1,17 @@
-### 发送登录请求
+### 发送登录请求 (返回 JSON 包含 token 字段)
 POST http://localhost:8080/api/public/login
-Content-Type: "application/json"
+Content-Type: application/json
 
 {
     "username": "abc",
     "password": "123123"
 }
 
-### 
+### 拿到 token 后，用下面的方法访问受保护接口（将 {{token}} 替换为实际 token）
+# 示例：调用现有的受保护接口，获取课程列表（Controller: CourseController -> GET /api/courses）
+GET http://localhost:8080/api/courses
+Authorization: Bearer {{token}}
+
+### 在 VS Code REST Client 中：
+# 1) 先发送登录请求，复制响应中的 token 字符串
+# 2) 将上面的 {{token}} 替换为复制的 token
