@@ -27,7 +27,15 @@ public class AuthController {
 
     @PostMapping("/login")
     public ApiResponse<LoginResponseDTO> login(@RequestBody LoginRequestDTO lRequestDTO) {
-        Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(lRequestDTO.getUsername(), lRequestDTO.getPassword()));
+        System.out.println(lRequestDTO.getPassword());
+        System.out.println(lRequestDTO.getUsername());
+        Authentication authentication=null;
+        try{
+            authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(lRequestDTO.getUsername(), lRequestDTO.getPassword()));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return ApiResponse.error(e.getMessage());
+        }
         final UserDetails userDetails=(UserDetails) authentication.getPrincipal();
         final String token=jwtTokenUtil.generateToken(userDetails);
         LoginResponseDTO loginResponseDTO=new LoginResponseDTO();

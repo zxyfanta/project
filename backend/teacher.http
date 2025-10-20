@@ -9,8 +9,8 @@ Content-Type: application/json
 
 ### 拿到 token 后，用下面的方法访问受保护接口（将 {{token}} 替换为实际 token）
 # 示例：调用现有的受保护接口，获取课程列表（Controller: CourseController -> GET /api/courses）
-GET http://localhost:8080/api/courses
-Authorization: Bearer {{token}}
+GET http://localhost:8080/api/major-codes
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmMiLCJleHAiOjE3NjEwMTA2MTQsImlhdCI6MTc2MDkyNDIxNH0._z25895gJhJogB9_35WpeFv8aJwMFDWntBY3jHeD_yo
 
 ### 在 VS Code REST Client 中：
 # 1) 先发送登录请求，复制响应中的 token 字符串
