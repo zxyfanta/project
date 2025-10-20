@@ -1,9 +1,13 @@
 <script setup>
-import MajorCodeView from '@/views/MajorCodeView.vue'
 </script>
 
 <template>
-  <MajorCodeView/>
+  <div>
+    <RouterLink to="/" >首页</RouterLink>
+    <RouterLink to="/login">登录页</RouterLink>
+    <RouterLink to="/major-code">专业编码</RouterLink>
+    <RouterView></RouterView>
+  </div>
 </template>
 
 <style scoped>
