@@ -31,6 +31,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(
                 auth-> auth
                 .requestMatchers("/api/public/login").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(
@@ -39,6 +40,7 @@ public class SecurityConfig {
             )
             .requestCache(cache->cache.disable())
             .formLogin(AbstractHttpConfigurer::disable)
+            .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .httpBasic(AbstractHttpConfigurer::disable)
             .addFilterBefore(jwtRequsetFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
